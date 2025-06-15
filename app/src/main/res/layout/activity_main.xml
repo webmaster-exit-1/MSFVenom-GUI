@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity" >
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:text="MSFVenom GUI"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/payloadSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleTextView"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/lhostEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/payloadSpinner"
+        android:layout_marginBottom="16dp"
+        android:hint="LHOST"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/lportEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lhostEditText"
+        android:layout_marginBottom="16dp"
+        android:hint="LPORT"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/generateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lportEditText"
+        android:layout_marginTop="24dp"
+        android:text="Generate Payload" />
+
+    <TextView
+        android:id="@+id/outputTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/generateButton"
+        android:layout_marginTop="16dp"
+        android:background="#E0E0E0"
+        android:fontFamily="monospace"
+        android:padding="8dp"
+        android:text="Output will be displayed here..."
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@android:color/black" />
+
+</RelativeLayout>
