@@ -1,0 +1,195 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "tempfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "detail": "tempfile",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "send_file",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "secure_filename",
+        "importPath": "werkzeug.utils",
+        "description": "werkzeug.utils",
+        "isExtraImport": true,
+        "detail": "werkzeug.utils",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "allowed_file",
+        "kind": 2,
+        "importPath": "msfvenom_server",
+        "description": "msfvenom_server",
+        "peekOfCode": "def allowed_file(filename):\n    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS\ndef validate_payload(payload):\n    \"\"\"Validate that the payload is safe and supported\"\"\"\n    allowed_payloads = [\n        'android/meterpreter/reverse_tcp',\n        'android/meterpreter/reverse_https',\n        'android/shell/reverse_tcp',\n        'android/shell/reverse_https'\n    ]",
+        "detail": "msfvenom_server",
+        "documentation": {}
+    },
+    {
+        "label": "validate_payload",
+        "kind": 2,
+        "importPath": "msfvenom_server",
+        "description": "msfvenom_server",
+        "peekOfCode": "def validate_payload(payload):\n    \"\"\"Validate that the payload is safe and supported\"\"\"\n    allowed_payloads = [\n        'android/meterpreter/reverse_tcp',\n        'android/meterpreter/reverse_https',\n        'android/shell/reverse_tcp',\n        'android/shell/reverse_https'\n    ]\n    return payload in allowed_payloads\ndef validate_ip(ip):",
+        "detail": "msfvenom_server",
+        "documentation": {}
+    },
+    {
+        "label": "validate_ip",
+        "kind": 2,
+        "importPath": "msfvenom_server",
+        "description": "msfvenom_server",
+        "peekOfCode": "def validate_ip(ip):\n    \"\"\"Basic IP validation\"\"\"\n    parts = ip.split('.')\n    if len(parts) != 4:\n        return False\n    try:\n        for part in parts:\n            if not 0 <= int(part) <= 255:\n                return False\n        return True",
+        "detail": "msfvenom_server",
+        "documentation": {}
+    },
+    {
+        "label": "validate_port",
+        "kind": 2,
+        "importPath": "msfvenom_server",
+        "description": "msfvenom_server",
+        "peekOfCode": "def validate_port(port):\n    \"\"\"Basic port validation\"\"\"\n    try:\n        port_num = int(port)\n        return 1 <= port_num <= 65535\n    except ValueError:\n        return False\n@app.route('/status', methods=['GET'])\ndef status():\n    \"\"\"Health check endpoint\"\"\"",
+        "detail": "msfvenom_server",
+        "documentation": {}
+    },
+    {
+        "label": "status",
+        "kind": 2,
+        "importPath": "msfvenom_server",
+        "description": "msfvenom_server",
+        "peekOfCode": "def status():\n    \"\"\"Health check endpoint\"\"\"\n    return jsonify({\n        'status': 'online',\n        'message': 'MSFVenom Server is running',\n        'timestamp': time.time()\n    })\n@app.route('/generate', methods=['GET'])\ndef generate_payload():\n    \"\"\"Generate msfvenom payload\"\"\"",
+        "detail": "msfvenom_server",
+        "documentation": {}
+    },
+    {
+        "label": "generate_payload",
+        "kind": 2,
+        "importPath": "msfvenom_server",
+        "description": "msfvenom_server",
+        "peekOfCode": "def generate_payload():\n    \"\"\"Generate msfvenom payload\"\"\"\n    try:\n        # Get parameters\n        payload = request.args.get('payload', '')\n        lhost = request.args.get('lhost', '')\n        lport = request.args.get('lport', '')\n        format_type = request.args.get('format', 'apk')\n        # Validate parameters\n        if not payload or not lhost or not lport:",
+        "detail": "msfvenom_server",
+        "documentation": {}
+    },
+    {
+        "label": "inject_payload",
+        "kind": 2,
+        "importPath": "msfvenom_server",
+        "description": "msfvenom_server",
+        "peekOfCode": "def inject_payload():\n    \"\"\"Inject payload into existing APK\"\"\"\n    try:\n        # Check if file was uploaded\n        if 'apk' not in request.files:\n            return jsonify({'error': 'No APK file uploaded'}), 400\n        file = request.files['apk']\n        if file.filename == '':\n            return jsonify({'error': 'No file selected'}), 400\n        if not allowed_file(file.filename):",
+        "detail": "msfvenom_server",
+        "documentation": {}
+    },
+    {
+        "label": "list_payloads",
+        "kind": 2,
+        "importPath": "msfvenom_server",
+        "description": "msfvenom_server",
+        "peekOfCode": "def list_payloads():\n    \"\"\"List available payloads\"\"\"\n    payloads = [\n        'android/meterpreter/reverse_tcp',\n        'android/meterpreter/reverse_https',\n        'android/shell/reverse_tcp',\n        'android/shell/reverse_https'\n    ]\n    return jsonify({'payloads': payloads})\nif __name__ == '__main__':",
+        "detail": "msfvenom_server",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "msfvenom_server",
+        "description": "msfvenom_server",
+        "peekOfCode": "app = Flask(__name__)\napp.logger.setLevel(logging.INFO)\n# Configuration\nUPLOAD_FOLDER = '/tmp/msfvenom_uploads'\nOUTPUT_FOLDER = '/tmp/msfvenom_output'\nALLOWED_EXTENSIONS = {'apk'}\n# Create directories if they don't exist\nos.makedirs(UPLOAD_FOLDER, exist_ok=True)\nos.makedirs(OUTPUT_FOLDER, exist_ok=True)\ndef allowed_file(filename):",
+        "detail": "msfvenom_server",
+        "documentation": {}
+    },
+    {
+        "label": "UPLOAD_FOLDER",
+        "kind": 5,
+        "importPath": "msfvenom_server",
+        "description": "msfvenom_server",
+        "peekOfCode": "UPLOAD_FOLDER = '/tmp/msfvenom_uploads'\nOUTPUT_FOLDER = '/tmp/msfvenom_output'\nALLOWED_EXTENSIONS = {'apk'}\n# Create directories if they don't exist\nos.makedirs(UPLOAD_FOLDER, exist_ok=True)\nos.makedirs(OUTPUT_FOLDER, exist_ok=True)\ndef allowed_file(filename):\n    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS\ndef validate_payload(payload):\n    \"\"\"Validate that the payload is safe and supported\"\"\"",
+        "detail": "msfvenom_server",
+        "documentation": {}
+    },
+    {
+        "label": "OUTPUT_FOLDER",
+        "kind": 5,
+        "importPath": "msfvenom_server",
+        "description": "msfvenom_server",
+        "peekOfCode": "OUTPUT_FOLDER = '/tmp/msfvenom_output'\nALLOWED_EXTENSIONS = {'apk'}\n# Create directories if they don't exist\nos.makedirs(UPLOAD_FOLDER, exist_ok=True)\nos.makedirs(OUTPUT_FOLDER, exist_ok=True)\ndef allowed_file(filename):\n    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS\ndef validate_payload(payload):\n    \"\"\"Validate that the payload is safe and supported\"\"\"\n    allowed_payloads = [",
+        "detail": "msfvenom_server",
+        "documentation": {}
+    },
+    {
+        "label": "ALLOWED_EXTENSIONS",
+        "kind": 5,
+        "importPath": "msfvenom_server",
+        "description": "msfvenom_server",
+        "peekOfCode": "ALLOWED_EXTENSIONS = {'apk'}\n# Create directories if they don't exist\nos.makedirs(UPLOAD_FOLDER, exist_ok=True)\nos.makedirs(OUTPUT_FOLDER, exist_ok=True)\ndef allowed_file(filename):\n    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS\ndef validate_payload(payload):\n    \"\"\"Validate that the payload is safe and supported\"\"\"\n    allowed_payloads = [\n        'android/meterpreter/reverse_tcp',",
+        "detail": "msfvenom_server",
+        "documentation": {}
+    }
+]
