@@ -49,11 +49,13 @@ The server will start on `http://localhost:8080` by default.
 ### 3. Install the Android App
 
 1. Build the APK using Android Studio or Gradle:
+
    ```bash
    ./gradlew assembleRelease
    ```
-2. Install the generated APK on your Android device
-3. Grant necessary permissions when prompted
+
+1. Install the generated APK on your Android device
+1. Grant necessary permissions when prompted
 
 ## Usage
 
@@ -129,6 +131,7 @@ The companion server provides the following endpoints:
 ### Server Logs
 
 Monitor server logs for debugging:
+
 ```bash
 python3 msfvenom_server.py
 ```
@@ -136,11 +139,13 @@ python3 msfvenom_server.py
 ## Requirements
 
 ### Android App
+
 - Android 12+ (API level 31+)
 - Storage permissions
 - Network access
 
 ### Server
+
 - Linux/macOS/Windows
 - Python 3.6+
 - Metasploit Framework
